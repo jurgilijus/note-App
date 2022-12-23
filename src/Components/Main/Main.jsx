@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {db} from '../../Firebase'
-import {collection, getDocs, addDoc, doc, deleteDoc, Timestamp} from 'firebase/firestore'
+import {collection, getDocs, addDoc, doc, deleteDoc} from 'firebase/firestore'
 
 // CSS
 import './Main.css'
