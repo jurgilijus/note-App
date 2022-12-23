@@ -1,0 +1,13 @@
+*, *::after, *::before{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  font-family: 'Signika', sans-serif;
+  background: linear-gradient(90deg, rgba(242, 166, 90, 1) 53%, rgba(119, 47, 26, 1) 95%);
+  height: 100vh;
+}
+/* *{
+  border: 2px solid red;
+} */
