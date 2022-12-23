@@ -24,7 +24,7 @@ function Main() {
   
   const createNote = async () => {
     try {
-      await addDoc(userCollectionRef, {title: newTitle, text: newText, date: Timestamp.fromDate(new Date(newDate))})
+      await addDoc(userCollectionRef, {title: newTitle, text: newText, date: newDate})
     } catch (error) {
       console.log(error.message);
     }
@@ -62,7 +62,6 @@ function Main() {
           <h4>{note.title}</h4>
           <p>{note.text}</p>
           <button onClick={()=>{deleteNote(note.id)}}>Delete</button>
-          <p>{console.log(note.date)}</p>
           <p>{note.date}</p>
         </div>
       })}
