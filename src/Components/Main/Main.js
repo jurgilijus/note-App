@@ -30,11 +30,14 @@ function Main() {
   }, []);
 
   const createNote = async () => {
+    const currentDate = new Date();
+    const dateOfCreation = `${currentDate.getFullYear()} - ${currentDate.getMonth()} - ${currentDate.getDate()} / ${currentDate.getHours()}:${currentDate.getMinutes()}:${currentDate.getSeconds()}`;
     try {
       await addDoc(userCollectionRef, {
         title: newTitle,
         text: newText,
         date: newDate,
+        creationTime: dateOfCreation,
       });
     } catch (error) {
       console.log(error.message);
@@ -92,6 +95,7 @@ function Main() {
         {notes.map((note) => {
           return (
             <div key={note.id} className=" note-conteiner">
+              <p className="note-time">Note created: {note.creationTime}</p>
               <button
                 className="delete-note"
                 onClick={() => {
@@ -106,6 +110,7 @@ function Main() {
               <p>{note.text}</p>
 
               <p>To do date: {note.date}</p>
+              {console.log(note)}
             </div>
           );
         })}
