@@ -61,6 +61,11 @@ input, textarea{
     top: -1.5rem;
     left: 100%;
 }
+.note-time{
+    position: relative;
+    left: 0;
+    top: -0.3rem;
+}
 .delete-note:hover{
     filter: drop-shadow(5px 5px 10px #000);
     cursor: pointer;
