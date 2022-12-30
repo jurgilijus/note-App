@@ -9,6 +9,7 @@ import {
 } from "firebase/firestore";
 import { AiFillDelete } from "react-icons/ai";
 import { IoCreateOutline } from "react-icons/io5";
+import { MdOutlineDone } from "react-icons/md";
 
 // CSS
 import "./Main.css";
@@ -18,7 +19,14 @@ function Main() {
   const [newTitle, setNewTitle] = useState("");
   const [newText, setNewText] = useState("");
   const [newDate, setNewDate] = useState("");
+  const [noteBorder, setNoteBorder] = useState([]);
   const userCollectionRef = collection(db, "notes");
+
+  // console.log(noteBorder);
+  const handleDoneNote = async (i) => {
+    const border = notes[i];
+    setNoteBorder(border.id);
+  };
 
   useEffect(() => {
     const userCollectionRef = collection(db, "notes");
@@ -88,30 +96,46 @@ function Main() {
           }}
         />
 
-        <button type="submit" onClick={createNote}>
+        <button type="submit" onClick={createNote} title="create note">
           Create <IoCreateOutline className="create-icon" />
         </button>
       </div>
       <div className="form">
-        {notes.map((note) => {
+        {notes.map((note, i) => {
           return (
-            <div key={note.id} className=" note-conteiner">
-              <p className="note-time">Note created: {note.creationTime}</p>
-              <button
-                className="delete-note"
-                onClick={() => {
-                  deleteNote(note.id);
-                }}
-                title="delete note"
-              >
-                <AiFillDelete />
-              </button>
-
+            <div
+              key={note.id}
+              className={
+                noteBorder === note.id
+                  ? "note-conteiner green"
+                  : "note-conteiner"
+              }
+            >
+              <label>Note created: </label>
+              <p className="note-time">{note.creationTime}</p>
+              <div className="btn-aligne">
+                <button
+                  onClick={() => handleDoneNote(i)}
+                  className="done-btn"
+                  title="done"
+                >
+                  <MdOutlineDone />
+                </button>
+                <button
+                  className="delete-note"
+                  onClick={() => {
+                    deleteNote(note.id);
+                  }}
+                  title="delete note"
+                >
+                  <AiFillDelete />
+                </button>
+              </div>
               <h4>{note.title}</h4>
               <p>{note.text}</p>
 
               <p>To do date: {note.date}</p>
-              {/* {console.log(note)} */}
+              {/* {console.log(note.id)} */}
             </div>
           );
         })}
