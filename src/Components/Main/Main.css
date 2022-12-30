@@ -57,7 +57,7 @@ input, textarea{
     font-weight: bold;
     font-size: 1rem;
 }
-.delete-note, .done-btn{
+.delete-note, .done-btn, .size-btn{
     background-color: transparent;
     border: none;
     font-size: 1.2rem;
@@ -68,7 +68,7 @@ input, textarea{
 }
 .done-btn{
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
 }
 .note-time{
     position: relative;
@@ -82,7 +82,7 @@ input, textarea{
 .btn-aligne{
     display: block;
     position: relative;
-    right: 5rem;
+    right: 9rem;
 }
 
 button{

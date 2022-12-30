@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { AiFillDelete } from "react-icons/ai";
 import { IoCreateOutline } from "react-icons/io5";
-import { MdOutlineDone } from "react-icons/md";
+import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 
 // CSS
 import "./Main.css";
@@ -20,10 +20,21 @@ function Main() {
   const [newText, setNewText] = useState("");
   const [newDate, setNewDate] = useState("");
   const [noteBorder, setNoteBorder] = useState([]);
+  const [arrow, setArrow] = useState(false);
+
   const userCollectionRef = collection(db, "notes");
 
+  const changeNoteSize = (i) => {
+    const arrowId = notes[i];
+    if (!arrow === !arrow) {
+      setArrow(arrowId.id);
+    } else {
+      setArrow(arrowId.id);
+    }
+  };
+
   // console.log(noteBorder);
-  const handleDoneNote = async (i) => {
+  const handleDoneNote = (i) => {
     const border = notes[i];
     setNoteBorder(border.id);
   };
@@ -115,11 +126,18 @@ function Main() {
               <p className="note-time">{note.creationTime}</p>
               <div className="btn-aligne">
                 <button
+                  onClick={() => changeNoteSize(i)}
+                  className="size-btn"
+                  title="hide note"
+                >
+                  {arrow == note.id ? <SlArrowDown /> : <SlArrowUp />}
+                </button>
+                <button
                   onClick={() => handleDoneNote(i)}
                   className="done-btn"
                   title="done"
                 >
-                  <MdOutlineDone />
+                  done
                 </button>
                 <button
                   className="delete-note"
