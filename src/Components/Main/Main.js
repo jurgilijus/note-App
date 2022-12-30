@@ -7,6 +7,7 @@ import {
   doc,
   deleteDoc,
 } from "firebase/firestore";
+import { AiFillDelete } from "react-icons/ai";
 
 // CSS
 import "./Main.css";
@@ -75,6 +76,7 @@ function Main() {
           }}
         />
 
+        <label>To do date:</label>
         <input
           type="date"
           onChange={(event) => {
@@ -89,17 +91,21 @@ function Main() {
       <div className="form">
         {notes.map((note) => {
           return (
-            <div key={note.id} className="form-conteiner">
-              <h4>{note.title}</h4>
-              <p>{note.text}</p>
+            <div key={note.id} className=" note-conteiner">
               <button
+                className="delete-note"
                 onClick={() => {
                   deleteNote(note.id);
                 }}
+                title="delete note"
               >
-                Delete
+                <AiFillDelete />
               </button>
-              <p>{note.date}</p>
+
+              <h4>{note.title}</h4>
+              <p>{note.text}</p>
+
+              <p>To do date: {note.date}</p>
             </div>
           );
         })}
