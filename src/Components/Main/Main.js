@@ -8,6 +8,7 @@ import {
   deleteDoc,
 } from "firebase/firestore";
 import { AiFillDelete } from "react-icons/ai";
+import { IoCreateOutline } from "react-icons/io5";
 
 // CSS
 import "./Main.css";
@@ -88,7 +89,7 @@ function Main() {
         />
 
         <button type="submit" onClick={createNote}>
-          Create
+          Create <IoCreateOutline className="create-icon" />
         </button>
       </div>
       <div className="form">
@@ -110,7 +111,7 @@ function Main() {
               <p>{note.text}</p>
 
               <p>To do date: {note.date}</p>
-              {console.log(note)}
+              {/* {console.log(note)} */}
             </div>
           );
         })}

@@ -58,8 +58,9 @@ input, textarea{
     border: none;
     font-size: 1.2rem;
     position: relative;
-    top: -1.5rem;
+    top: -2.5rem;
     left: 100%;
+    margin-left: -1rem;
 }
 .note-time{
     position: relative;
@@ -74,4 +75,18 @@ input, textarea{
 .form{
     position: absolute;
     top: 25rem;
+}
+
+button{
+    background-color: transparent;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+}
+button:hover{
+    cursor: pointer;
+    filter: drop-shadow(5px 5px 10px #000);
+    scale: 1.1;
 }
