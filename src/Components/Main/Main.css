@@ -16,7 +16,18 @@
     filter: drop-shadow(5px 5px 10px #000);
     margin: 3rem 0rem;
 }
-
+.note-conteiner{
+    background-image: url('../../Assets/note.png');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        max-width: 30rem;
+        position: relative;;
+        left: 0;
+        margin: 5rem 1rem;
+        padding: 2rem 2.5rem;
+        filter: drop-shadow(5px 5px 10px #000);
+}
 h4{
     font-size: 1.5rem;
 }
@@ -42,20 +53,24 @@ input, textarea{
     border-radius: 0.5rem;
     
 }
-
-button{
-    margin-top: 0.5rem;
-    padding: 0.25rem 1rem 0.25rem 1rem;
-    font-size: 1rem;
-    font-weight: 900;
-    border-radius: 0.5rem;
+.delete-note{
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+    position: relative;
+    top: -1.5rem;
+    left: 100%;
+}
+.note-time{
+    position: relative;
+    left: 0;
+    top: -0.3rem;
+}
+.delete-note:hover{
+    filter: drop-shadow(5px 5px 10px #000);
     cursor: pointer;
 }
-button:hover{
-    scale: 1.1;
-    filter: drop-shadow(5px 5px 10px #000);
-    background-color: rgb(255, 255, 255);
-}
+
 .form{
     position: absolute;
     top: 25rem;
