@@ -19,9 +19,14 @@ function Main() {
   const [newTitle, setNewTitle] = useState("");
   const [newText, setNewText] = useState("");
   const [newDate, setNewDate] = useState("");
-  const [noteBorder, setNoteBorder] = useState(false);
-  const handleDoneNote = (id) => setNoteBorder(!noteBorder);
+  const [noteBorder, setNoteBorder] = useState([]);
   const userCollectionRef = collection(db, "notes");
+
+  // console.log(noteBorder);
+  const handleDoneNote = async (i) => {
+    const border = notes[i];
+    setNoteBorder(border.id);
+  };
 
   useEffect(() => {
     const userCollectionRef = collection(db, "notes");
@@ -96,17 +101,21 @@ function Main() {
         </button>
       </div>
       <div className="form">
-        {notes.map((note, id) => {
+        {notes.map((note, i) => {
           return (
             <div
               key={note.id}
-              className={noteBorder ? "note-conteiner green" : "note-conteiner"}
+              className={
+                noteBorder === note.id
+                  ? "note-conteiner green"
+                  : "note-conteiner"
+              }
             >
               <label>Note created: </label>
               <p className="note-time">{note.creationTime}</p>
               <div className="btn-aligne">
                 <button
-                  onClick={(id) => handleDoneNote(id.target.value)}
+                  onClick={() => handleDoneNote(i)}
                   className="done-btn"
                   title="done"
                 >
@@ -126,7 +135,7 @@ function Main() {
               <p>{note.text}</p>
 
               <p>To do date: {note.date}</p>
-              {/* {console.log(note)} */}
+              {/* {console.log(note.id)} */}
             </div>
           );
         })}
