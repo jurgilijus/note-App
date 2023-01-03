@@ -1,0 +1,55 @@
+.note-conteiner {
+  background-image: url("../../Assets/note.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 35rem;
+  margin: 2rem 1rem;
+  padding: 2rem 2.5rem;
+  filter: drop-shadow(5px 5px 10px #000);
+  border: 8px solid transparent;
+}
+.note-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+p {
+  padding: 0.25rem 0rem;
+}
+.btn {
+  border: none;
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  top: -2rem;
+  left: 1rem;
+  padding: 0.2rem;
+}
+.done {
+  border: 8px solid green;
+  opacity: 0.5;
+}
+.note-content {
+  padding-top: 1rem;
+}
+.hide {
+  display: none;
+}
+@media (max-width: 450px) {
+  .note-header {
+    flex-direction: column;
+  }
+  .btns {
+    top: 0rem;
+    left: 0rem;
+  }
+}
