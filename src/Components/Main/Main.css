@@ -48,7 +48,8 @@ button {
   border-radius: 1rem;
   margin-top: 0.5rem;
 }
-button:hover {
+button:hover,
+a:hover {
   cursor: pointer;
   filter: drop-shadow(5px 5px 10px #000);
   scale: 1.1;

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
+import { FiEdit3 } from "react-icons/fi";
+import NotePopup from "./NotePopup/NotePopup";
 
 // CSS
 import "./Notes.css";
 
-function Notes({ note, toogleDone, deleteNote, minimizeNote }) {
+function Notes({ note, toogleDone, deleteNote }) {
   const [arrow, setArrow] = useState(false);
   const [hideContent, setHideContent] = useState(false);
   const handleHideContent = () => {
@@ -23,6 +25,9 @@ function Notes({ note, toogleDone, deleteNote, minimizeNote }) {
           <p>{note.creationTime}</p>
         </div>
         <div className="btns">
+          <button className="btn" title="edit note">
+            <FiEdit3 />
+          </button>
           <button
             onClick={() => toogleDone(note)}
             className="btn"
@@ -53,6 +58,7 @@ function Notes({ note, toogleDone, deleteNote, minimizeNote }) {
         <p>{note.text}</p>
         <p>To do date: {note.toDoDate}</p>
       </div>
+      {<NotePopup note={note} />}
     </div>
   );
 }

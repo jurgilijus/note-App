@@ -33,7 +33,7 @@ function Main() {
     return () => getNotes();
   }, []);
 
-  const createNote = async (e) => {
+  const createNote = async (e, input) => {
     e.preventDefault(e);
     const currentDate = new Date();
     const dateOfCreation = `${currentDate.getFullYear()} - ${
@@ -49,6 +49,10 @@ function Main() {
       .getSeconds()
       .toString()
       .padStart(2, "0")}`;
+    // if (input === "") {
+    //   alert("Please enter missing input");
+    //   return;
+    // }
     try {
       await addDoc(q, {
         title: title,
