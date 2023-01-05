@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { db } from "../../Firebase";
 import {
   addDoc,
@@ -22,7 +23,19 @@ function Main() {
   const [date, setDate] = useState("");
   const q = collection(db, "notes");
 
+  const navigate = useNavigate();
+
   const { user, logout } = UserAuth();
+
+  const handleLogout = async (user) => {
+    try {
+      await logout();
+      navigate("/");
+      alert("User: " + user.email + " logged out");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
     const q = collection(db, "notes");
@@ -36,7 +49,7 @@ function Main() {
     return () => getNotes();
   }, []);
 
-  const createNote = async (e, input) => {
+  const createNote = async (e) => {
     e.preventDefault(e);
     const currentDate = new Date();
     const dateOfCreation = `${currentDate.getFullYear()} - ${
@@ -103,7 +116,9 @@ function Main() {
         <button type="submit" title="create note" onClick={createNote}>
           Create <IoCreateOutline className="create-icon" />
         </button>
-        <button title="Logout from account">Logout</button>
+        <button onClick={handleLogout} title="Logout from account">
+          Logout
+        </button>
       </form>
       <section>
         {notes.map((note, index) => {

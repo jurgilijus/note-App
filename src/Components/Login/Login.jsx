@@ -1,64 +1,49 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../Firebase.js";
+import { UserAuth } from "../../Context/AuthContext";
+
 // CSS
 import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const { login } = UserAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        navigate("/notes");
-      }
-    });
-  }, [navigate]);
-
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleLogin = () => {
-    signInWithEmailAndPassword(auth, console.log(email), password)
-      .then(() => {
-        navigate("/notes");
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      await login(email, password);
+      navigate("/notes");
+    } catch (error) {
+      setError(error.message);
+      alert(error.message);
+    }
   };
 
   return (
     <section className="login-conteiner">
-      <form className="login">
+      <form onSubmit={handleSubmit} className="login">
         <h2>Login</h2>
         <input
           type="email"
           placeholder="Your e-mail.."
-          onChange={handleEmail}
-          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
           placeholder="Your password.."
-          onChange={handlePassword}
-          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="login-btn" onClick={handleLogin}>
+        <button type="submit" className="login-btn">
           Login
         </button>
         <Link to="register" className="login-link">
           Not register?
         </Link>
-        <Link to="notes">Notes page</Link>
       </form>
     </section>
   );
