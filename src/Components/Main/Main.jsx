@@ -10,6 +10,7 @@ import {
 } from "firebase/firestore";
 import { IoCreateOutline } from "react-icons/io5";
 import Notes from "../Notes/Notes";
+import { UserAuth } from "../../Context/AuthContext";
 
 // CSS
 import "./Main.css";
@@ -20,6 +21,8 @@ function Main() {
   const [text, setText] = useState("");
   const [date, setDate] = useState("");
   const q = collection(db, "notes");
+
+  const { user, logout } = UserAuth();
 
   useEffect(() => {
     const q = collection(db, "notes");
@@ -79,6 +82,7 @@ function Main() {
     <div className="conteiner">
       <form onSubmit={createNote} className="form-conteiner">
         <h2>Create note</h2>
+        <p>User: {user.email}</p>
 
         <input
           type="text"
@@ -99,6 +103,7 @@ function Main() {
         <button type="submit" title="create note" onClick={createNote}>
           Create <IoCreateOutline className="create-icon" />
         </button>
+        <button title="Logout from account">Logout</button>
       </form>
       <section>
         {notes.map((note, index) => {

@@ -58,6 +58,7 @@ function Login() {
         <Link to="register" className="login-link">
           Not register?
         </Link>
+        <Link to="notes">Notes page</Link>
       </form>
     </section>
   );
