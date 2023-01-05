@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { db } from "../../Firebase";
 import {
   addDoc,
@@ -10,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { IoCreateOutline } from "react-icons/io5";
 import Notes from "../Notes/Notes";
+import { UserAuth } from "../../Context/AuthContext";
 
 // CSS
 import "./Main.css";
@@ -20,6 +22,20 @@ function Main() {
   const [text, setText] = useState("");
   const [date, setDate] = useState("");
   const q = collection(db, "notes");
+
+  const navigate = useNavigate();
+
+  const { user, logout } = UserAuth();
+
+  const handleLogout = async (user) => {
+    try {
+      await logout();
+      navigate("/");
+      alert("User: " + user.email + " logged out");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
     const q = collection(db, "notes");
@@ -33,7 +49,7 @@ function Main() {
     return () => getNotes();
   }, []);
 
-  const createNote = async (e, input) => {
+  const createNote = async (e) => {
     e.preventDefault(e);
     const currentDate = new Date();
     const dateOfCreation = `${currentDate.getFullYear()} - ${
@@ -79,6 +95,7 @@ function Main() {
     <div className="conteiner">
       <form onSubmit={createNote} className="form-conteiner">
         <h2>Create note</h2>
+        <p>User: {user.email}</p>
 
         <input
           type="text"
@@ -98,6 +115,9 @@ function Main() {
 
         <button type="submit" title="create note" onClick={createNote}>
           Create <IoCreateOutline className="create-icon" />
+        </button>
+        <button onClick={handleLogout} title="Logout from account">
+          Logout
         </button>
       </form>
       <section>

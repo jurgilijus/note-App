@@ -13,7 +13,7 @@ import ReactDOM from "react-dom";
 // CSS
 import "./NotePopup.css";
 
-function NotePopup({ note }) {
+function NotePopup() {
   // const editNote = () => {};
   return ReactDOM.createPortal(
     <>
