@@ -10,12 +10,18 @@ import "./Notes.css";
 function Notes({ note, toogleDone, deleteNote }) {
   const [arrow, setArrow] = useState(false);
   const [hideContent, setHideContent] = useState(false);
+  const [popup, setPopup] = useState(false);
+
+  const handlePopup = () => setPopup(!popup);
+
   const handleHideContent = () => {
     setHideContent(!hideContent);
   };
+
   const changeArrow = () => {
     setArrow(!arrow);
   };
+
   return (
     <div className={note.done ? "note-conteiner done" : "note-conteiner"}>
       <div className="note-header">
@@ -25,7 +31,7 @@ function Notes({ note, toogleDone, deleteNote }) {
           <p>{note.creationTime}</p>
         </div>
         <div className="btns">
-          <button className="btn" title="edit note">
+          <button className="btn" title="edit note" onClick={handlePopup}>
             <FiEdit3 />
           </button>
           <button
@@ -58,7 +64,11 @@ function Notes({ note, toogleDone, deleteNote }) {
         <p>{note.text}</p>
         <p>To do date: {note.toDoDate}</p>
       </div>
-      {<NotePopup note={note} />}
+      {popup === true ? (
+        <NotePopup note={note} hide={() => setPopup(false)} />
+      ) : (
+        ""
+      )}
     </div>
   );
 }

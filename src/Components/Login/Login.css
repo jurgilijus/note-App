@@ -1,5 +1,6 @@
 .login-conteiner {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -21,3 +22,13 @@
 .login-link {
   margin: 0.5rem auto;
 }
+
+/* .training {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 30rem;
+  height: 60rem;
+} */
