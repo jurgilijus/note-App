@@ -7,7 +7,7 @@ import NotePopup from "./NotePopup/NotePopup";
 // CSS
 import "./Notes.css";
 
-function Notes({ note, toogleDone, deleteNote }) {
+function Notes({ note, toogleDone, deleteNote, setTitle, setText, setDate }) {
   const [arrow, setArrow] = useState(false);
   const [hideContent, setHideContent] = useState(false);
   const [popup, setPopup] = useState(false);
@@ -65,7 +65,13 @@ function Notes({ note, toogleDone, deleteNote }) {
         <p>To do date: {note.toDoDate}</p>
       </div>
       {popup === true ? (
-        <NotePopup note={note} hide={() => setPopup(false)} />
+        <NotePopup
+          note={note}
+          hide={() => setPopup(false)}
+          setTitle={setTitle}
+          setText={setText}
+          setDate={setDate}
+        />
       ) : (
         ""
       )}

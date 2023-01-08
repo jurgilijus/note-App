@@ -128,6 +128,9 @@ function Main() {
               note={note}
               toogleDone={toogleDone}
               deleteNote={deleteNote}
+              setTitle={setTitle}
+              setText={setText}
+              setDate={setDate}
             />
           );
         })}
