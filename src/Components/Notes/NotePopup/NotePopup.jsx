@@ -53,7 +53,7 @@ function NotePopup({ note, hide }) {
               //   setDate({ title: e.target.value });
               // }}
             />
-
+            <p>Labas</p>
             <button
               title="edit note"
               className="edit-btn"
