@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-// import { db } from "../../Firebase";
-// import {
-//   addDoc,
-//   collection,
-//   deleteDoc,
-//   doc,
-//   onSnapshot,
-//   updateDoc,
-// } from "firebase/firestore";
+import { db } from "../../../Firebase";
+import { doc, updateDoc } from "firebase/firestore";
 
 // CSS
 import "./NotePopup.css";
 
 function NotePopup({ note, hide }) {
-  // const editNote = () => {};
+  const [newTitle, setNewTitle] = useState("");
+  const [newText, setNewText] = useState("");
+  const [newDate, setNewDate] = useState("");
+  const updateNote = async (note) => {
+    await updateDoc(doc(db, "notes", note.id), {
+      title: newTitle,
+      text: newText,
+      toDoDate: newDate,
+    });
+  };
   return ReactDOM.createPortal(
     <>
       <div className="popup-overley">
@@ -22,18 +24,43 @@ function NotePopup({ note, hide }) {
           <form className="popup-form">
             <h2>Edit note</h2>
 
-            <input type="text" placeholder="Title..." />
+            <input
+              type="text"
+              placeholder="Title..."
+              defaultValue={note.title}
+              onChange={(e) => {
+                setNewTitle(e.target.value);
+              }}
+            />
 
-            <textarea type="text" placeholder="Your text..." rows={5} />
+            <textarea
+              type="text"
+              placeholder="Your text..."
+              rows={5}
+              defaultValue={note.text}
+              onChange={(e) => {
+                setNewText(e.target.value);
+              }}
+            />
 
-            <label>To do date:</label>
-            <input type="date" />
+            <label>To do date: {note.toDoDate}</label>
+            <input
+              type="date"
+              onChange={(e) => {
+                setNewDate(e.target.value);
+              }}
+              // onChange={(e) => {
+              //   setDate({ title: e.target.value });
+              // }}
+            />
 
             <button
-              type="submit"
               title="edit note"
               className="edit-btn"
-              onClick={() => hide()}
+              onClick={() => {
+                updateNote(note);
+                hide();
+              }}
             >
               Edit
             </button>
