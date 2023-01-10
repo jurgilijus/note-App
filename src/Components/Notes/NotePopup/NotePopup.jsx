@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { db } from "../../../Firebase";
 import { doc, updateDoc } from "firebase/firestore";
@@ -6,12 +6,15 @@ import { doc, updateDoc } from "firebase/firestore";
 // CSS
 import "./NotePopup.css";
 
-function NotePopup({ note, hide, setTitle, setText, setDate }) {
+function NotePopup({ note, hide }) {
+  const [newTitle, setNewTitle] = useState("");
+  const [newText, setNewText] = useState("");
+  const [newDate, setNewDate] = useState("");
   const updateNote = async (note) => {
     await updateDoc(doc(db, "notes", note.id), {
-      title: note.title,
-      text: note.text,
-      toDoDate: note.toDoDate,
+      title: newTitle,
+      text: newText,
+      toDoDate: newDate,
     });
   };
   return ReactDOM.createPortal(
@@ -26,7 +29,7 @@ function NotePopup({ note, hide, setTitle, setText, setDate }) {
               placeholder="Title..."
               defaultValue={note.title}
               onChange={(e) => {
-                setTitle({ title: e.target.value });
+                setNewTitle(e.target.value);
               }}
             />
 
@@ -36,7 +39,7 @@ function NotePopup({ note, hide, setTitle, setText, setDate }) {
               rows={5}
               defaultValue={note.text}
               onChange={(e) => {
-                setText({ title: e.target.value });
+                setNewText(e.target.value);
               }}
             />
 
@@ -44,16 +47,18 @@ function NotePopup({ note, hide, setTitle, setText, setDate }) {
             <input
               type="date"
               onChange={(e) => {
-                setDate({ title: e.target.value });
+                setNewDate(e.target.value);
               }}
+              // onChange={(e) => {
+              //   setDate({ title: e.target.value });
+              // }}
             />
 
             <button
-              type="submit"
               title="edit note"
               className="edit-btn"
               onClick={() => {
-                updateNote(note.id);
+                updateNote(note);
                 hide();
               }}
             >

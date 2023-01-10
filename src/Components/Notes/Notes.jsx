@@ -65,13 +65,7 @@ function Notes({ note, toogleDone, deleteNote, setTitle, setText, setDate }) {
         <p>To do date: {note.toDoDate}</p>
       </div>
       {popup === true ? (
-        <NotePopup
-          note={note}
-          hide={() => setPopup(false)}
-          setTitle={setTitle}
-          setText={setText}
-          setDate={setDate}
-        />
+        <NotePopup note={note} hide={() => setPopup(false)} />
       ) : (
         ""
       )}
