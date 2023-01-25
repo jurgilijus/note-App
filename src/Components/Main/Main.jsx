@@ -12,7 +12,6 @@ import {
 import { IoCreateOutline } from "react-icons/io5";
 import Notes from "../Notes/Notes";
 import { UserAuth } from "../../Context/AuthContext";
-
 // CSS
 import "./Main.css";
 
@@ -26,12 +25,11 @@ function Main() {
   const navigate = useNavigate();
 
   const { user, logout } = UserAuth();
-
-  const handleLogout = async (user) => {
+  const handleLogout = async () => {
     try {
       await logout();
+      alert("User is now logged out");
       navigate("/");
-      alert("User: " + user.email + " logged out");
     } catch (error) {
       console.log(error.message);
     }
@@ -65,10 +63,6 @@ function Main() {
       .getSeconds()
       .toString()
       .padStart(2, "0")}`;
-    // if (input === "") {
-    //   alert("Please enter missing input");
-    //   return;
-    // }
     try {
       await addDoc(q, {
         title: title,
@@ -125,10 +119,14 @@ function Main() {
         <button type="submit" title="create note" onClick={createNote}>
           Create <IoCreateOutline className="create-icon" />
         </button>
-        <button onClick={handleLogout} title="Logout from account">
-          Logout
-        </button>
       </form>
+      <button
+        onClick={handleLogout}
+        title="Logout from account"
+        className="logout"
+      >
+        Logout
+      </button>
       <section>
         {notes.map((note, index) => {
           return (

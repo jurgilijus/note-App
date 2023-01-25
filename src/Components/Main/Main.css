@@ -54,3 +54,13 @@ a:hover {
   filter: drop-shadow(5px 5px 10px #000);
   scale: 1.1;
 }
+.logout {
+  position: relative;
+  top: -30rem;
+  right: -1rem;
+}
+@media only screen and (max-width: 400px) {
+  .logout {
+    top: -34rem;
+  }
+}
