@@ -100,18 +100,27 @@ function Main() {
         <input
           type="text"
           placeholder="Title..."
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
         />
 
         <textarea
           type="text"
           placeholder="Your text..."
           rows={5}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
         />
 
         <label>To do date:</label>
-        <input type="date" onChange={(e) => setDate(e.target.value)} />
+        <input
+          type="date"
+          onChange={(e) => {
+            setDate(e.target.value);
+          }}
+        />
 
         <button type="submit" title="create note" onClick={createNote}>
           Create <IoCreateOutline className="create-icon" />
