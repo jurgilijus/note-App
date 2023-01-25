@@ -17,11 +17,14 @@ function Registration() {
     e.preventDefault();
     setError("");
     try {
+      // if (password.length < ) {
+
+      // }
       await createUser(email, password);
       navigate("/notes");
     } catch (error) {
       setError(error.message);
-      console.log(error.message);
+      alert(error.message);
     }
   };
 
@@ -39,6 +42,7 @@ function Registration() {
           placeholder="Your password.."
           onChange={(e) => setPassword(e.target.value)}
         />
+        <p className="err">{error}</p>
         <button className="login-btn" type="submit">
           Register
         </button>
