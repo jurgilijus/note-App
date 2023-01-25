@@ -33,7 +33,7 @@ h2 {
 input,
 textarea {
   width: 100%;
-  margin: 0.25rem;
+  margin: 0.5rem 0rem;
   padding: 0.25rem;
   border-radius: 0.5rem;
   background-color: transparent;
@@ -48,8 +48,19 @@ button {
   border-radius: 1rem;
   margin-top: 0.5rem;
 }
-button:hover {
+button:hover,
+a:hover {
   cursor: pointer;
   filter: drop-shadow(5px 5px 10px #000);
   scale: 1.1;
+}
+.logout {
+  position: relative;
+  top: -30rem;
+  right: -1rem;
+}
+@media only screen and (max-width: 400px) {
+  .logout {
+    top: -34rem;
+  }
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { db } from "../../Firebase";
 import {
   addDoc,
@@ -10,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { IoCreateOutline } from "react-icons/io5";
 import Notes from "../Notes/Notes";
-
+import { UserAuth } from "../../Context/AuthContext";
 // CSS
 import "./Main.css";
 
@@ -20,6 +21,19 @@ function Main() {
   const [text, setText] = useState("");
   const [date, setDate] = useState("");
   const q = collection(db, "notes");
+
+  const navigate = useNavigate();
+
+  const { user, logout } = UserAuth();
+  const handleLogout = async () => {
+    try {
+      await logout();
+      alert("User is now logged out");
+      navigate("/");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   useEffect(() => {
     const q = collection(db, "notes");
@@ -75,27 +89,44 @@ function Main() {
     <div className="conteiner">
       <form onSubmit={createNote} className="form-conteiner">
         <h2>Create note</h2>
+        <p>User: {user.email}</p>
 
         <input
           type="text"
           placeholder="Title..."
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
         />
 
         <textarea
           type="text"
           placeholder="Your text..."
           rows={5}
-          onChange={(e) => setText(e.target.value)}
+          onChange={(e) => {
+            setText(e.target.value);
+          }}
         />
 
         <label>To do date:</label>
-        <input type="date" onChange={(e) => setDate(e.target.value)} />
+        <input
+          type="date"
+          onChange={(e) => {
+            setDate(e.target.value);
+          }}
+        />
 
         <button type="submit" title="create note" onClick={createNote}>
           Create <IoCreateOutline className="create-icon" />
         </button>
       </form>
+      <button
+        onClick={handleLogout}
+        title="Logout from account"
+        className="logout"
+      >
+        Logout
+      </button>
       <section>
         {notes.map((note, index) => {
           return (
@@ -104,6 +135,9 @@ function Main() {
               note={note}
               toogleDone={toogleDone}
               deleteNote={deleteNote}
+              setTitle={setTitle}
+              setText={setText}
+              setDate={setDate}
             />
           );
         })}
