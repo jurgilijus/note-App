@@ -20,7 +20,7 @@ function Login() {
       await login(email, password);
       navigate("/notes");
     } catch (error) {
-      setError(error.message);
+      setError("invalid email or password");
       alert(error.message);
     }
   };
@@ -39,6 +39,7 @@ function Login() {
           placeholder="Your password.."
           onChange={(e) => setPassword(e.target.value)}
         />
+        <p className="err">{error}</p>
         <button type="submit" className="login-btn">
           Login
         </button>
