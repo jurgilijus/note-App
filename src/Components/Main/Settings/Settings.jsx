@@ -7,6 +7,7 @@ import "./Settings.css";
 
 function Settings() {
   const { logout } = UserAuth();
+
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
