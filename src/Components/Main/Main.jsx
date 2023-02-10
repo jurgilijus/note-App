@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { db } from "../../Firebase";
 import {
   addDoc,
@@ -10,8 +9,11 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { IoCreateOutline } from "react-icons/io5";
+import { FiSettings } from "react-icons/fi";
 import Notes from "../Notes/Notes";
 import { UserAuth } from "../../Context/AuthContext";
+import { Link } from "react-router-dom";
+
 // CSS
 import "./Main.css";
 
@@ -22,18 +24,7 @@ function Main() {
   const [date, setDate] = useState("");
   const q = collection(db, "notes");
 
-  const navigate = useNavigate();
-
-  const { user, logout } = UserAuth();
-  const handleLogout = async () => {
-    try {
-      await logout();
-      alert("User is now logged out");
-      navigate("/");
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+  const { user } = UserAuth();
 
   useEffect(() => {
     const q = collection(db, "notes");
@@ -119,14 +110,11 @@ function Main() {
         <button type="submit" title="create note" onClick={createNote}>
           Create <IoCreateOutline className="create-icon" />
         </button>
+        <Link to={"settings"} className="settings" title="Settings">
+          <FiSettings />
+        </Link>
       </form>
-      <button
-        onClick={handleLogout}
-        title="Logout from account"
-        className="logout"
-      >
-        Logout
-      </button>
+
       <section>
         {notes.map((note, index) => {
           return (

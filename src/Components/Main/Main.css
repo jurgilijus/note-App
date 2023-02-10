@@ -6,7 +6,8 @@
   width: 100%;
   height: 100%;
 }
-.form-conteiner {
+.form-conteiner,
+.settings-conteiner {
   background-image: url("../../Assets/note.png");
   background-position: center;
   background-repeat: no-repeat;
@@ -54,13 +55,20 @@ a:hover {
   filter: drop-shadow(5px 5px 10px #000);
   scale: 1.1;
 }
-.logout {
+.settings {
   position: relative;
-  top: -30rem;
-  right: -1rem;
+  top: -26.5rem;
+  right: -8rem;
+  text-decoration: none;
+  color: black;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 @media only screen and (max-width: 400px) {
   .logout {
-    top: -34rem;
+    top: -36rem;
+  }
+  .settings {
+    top: -30rem;
   }
 }
