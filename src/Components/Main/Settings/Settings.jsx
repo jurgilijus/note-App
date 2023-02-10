@@ -25,7 +25,12 @@ function Settings() {
   return (
     <section className="conteiner">
       <div className="settings-conteiner">
-        <a className="close-settings" onClick={handleClose} to={"notes"}>
+        <a
+          href="/notes"
+          className="close-settings"
+          onClick={handleClose}
+          to={"notes"}
+        >
           <AiOutlineCloseCircle />
         </a>
         <input type="email" placeholder="Your e-mail.." />

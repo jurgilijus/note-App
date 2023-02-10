@@ -15,7 +15,6 @@ function Registration() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     try {
       // if (password.length < ) {
 
