@@ -41,6 +41,9 @@ p {
 .note-content {
   padding-top: 1rem;
 }
+.note-text {
+  padding: 1rem;
+}
 .hide {
   display: none;
 }
