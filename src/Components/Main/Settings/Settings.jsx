@@ -23,7 +23,7 @@ function Settings() {
   };
 
   return (
-    <section className="conteiner">
+    <section>
       <div className="settings-conteiner">
         <a
           href="/notes"
@@ -33,8 +33,17 @@ function Settings() {
         >
           <AiOutlineCloseCircle />
         </a>
-        <input type="email" placeholder="Your e-mail.." />
-        <input type="password" placeholder="Your password.." />
+        <div className="setting-inputs">
+          <h2>Settings</h2>
+          <div className="setting-imput-section">
+            <input type="email" placeholder="Your e-mail.." />
+            <button className="change-btn">Change</button>
+          </div>
+          <div className="setting-imput-section">
+            <input type="password" placeholder="Your password.." />
+            <button className="change-btn">Change</button>
+          </div>
+        </div>
         <button
           onClick={handleLogout}
           title="Logout from account"
