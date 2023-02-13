@@ -42,6 +42,7 @@ p {
   padding-top: 1rem;
 }
 .note-text {
+  pointer-events: none;
   padding: 1rem;
 }
 .hide {

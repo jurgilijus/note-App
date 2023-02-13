@@ -41,9 +41,14 @@ function Main() {
   const createNote = async (e) => {
     e.preventDefault(e);
     const currentDate = new Date();
-    const dateOfCreation = `${currentDate.getFullYear()} - ${
-      currentDate.getMonth().toString() + 1
-    } - ${currentDate.getDate().toString().padStart(2, "0")}`;
+    const currentmonth = currentDate.getMonth() + 1;
+
+    const dateOfCreation = `${currentDate.getFullYear()} - ${currentmonth
+      .toString()
+      .padStart(2, "0")} - ${currentDate
+      .getDate()
+      .toString()
+      .padStart(2, "0")}`;
     const timeOfCreation = `${currentDate
       .getHours()
       .toString()
