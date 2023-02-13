@@ -61,7 +61,9 @@ function Notes({ note, toogleDone, deleteNote, setTitle, setText, setDate }) {
         </div>
       </div>
       <div className={hideContent ? "note-content hide" : "note-content"}>
-        <p>{note.text}</p>
+        <textarea className="note-text" rows={8}>
+          {note.text}
+        </textarea>
         <p>To do date: {note.toDoDate}</p>
       </div>
       {popup === true ? (
